@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/ywc/HPC/gemm/build/src",
+  "command": "/usr/local/cuda-12.6/bin/nvcc -forward-unknown-to-host-compiler -D_00_gemm_naive_EXPORTS --options-file CMakeFiles/00_gemm_naive.dir/includes_CUDA.rsp  -arch=native -Xcompiler=-fPIC -std=c++17 -x cu -c /home/ywc/HPC/gemm/src/00_gemm_naive.cu -o CMakeFiles/00_gemm_naive.dir/00_gemm_naive.cu.o",
+  "file": "/home/ywc/HPC/gemm/src/00_gemm_naive.cu"
+},
+{
+  "directory": "/home/ywc/HPC/gemm/build/src",
+  "command": "/usr/bin/c++   -std=gnu++17 -o CMakeFiles/version_exec.dir/checktheversion.cpp.o -c /home/ywc/HPC/gemm/src/checktheversion.cpp",
+  "file": "/home/ywc/HPC/gemm/src/checktheversion.cpp"
+},
+{
+  "directory": "/home/ywc/HPC/gemm/build/src",
+  "command": "/usr/local/cuda-12.6/bin/nvcc -forward-unknown-to-host-compiler  --options-file CMakeFiles/00_gemm_naive_exec.dir/includes_CUDA.rsp  --generate-code=arch=compute_52,code=[compute_52,sm_52] -std=c++17 -x cu -c /home/ywc/HPC/gemm/src/00_gemm_naive.cu -o CMakeFiles/00_gemm_naive_exec.dir/00_gemm_naive.cu.o",
+  "file": "/home/ywc/HPC/gemm/src/00_gemm_naive.cu"
+}
+]
