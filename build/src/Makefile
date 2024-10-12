@@ -117,18 +117,18 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/00_gemm_naive.dir/rule:
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/00_gemm_naive.dir/rule
-.PHONY : src/CMakeFiles/00_gemm_naive.dir/rule
+src/CMakeFiles/cuda_gemm.dir/rule:
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/cuda_gemm.dir/rule
+.PHONY : src/CMakeFiles/cuda_gemm.dir/rule
 
 # Convenience name for target.
-00_gemm_naive: src/CMakeFiles/00_gemm_naive.dir/rule
-.PHONY : 00_gemm_naive
+cuda_gemm: src/CMakeFiles/cuda_gemm.dir/rule
+.PHONY : cuda_gemm
 
 # fast build rule for target.
-00_gemm_naive/fast:
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive.dir/build.make src/CMakeFiles/00_gemm_naive.dir/build
-.PHONY : 00_gemm_naive/fast
+cuda_gemm/fast:
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/cuda_gemm.dir/build.make src/CMakeFiles/cuda_gemm.dir/build
+.PHONY : cuda_gemm/fast
 
 # Convenience name for target.
 src/CMakeFiles/version_exec.dir/rule:
@@ -145,26 +145,25 @@ version_exec/fast:
 .PHONY : version_exec/fast
 
 # Convenience name for target.
-src/CMakeFiles/00_gemm_naive_exec.dir/rule:
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/00_gemm_naive_exec.dir/rule
-.PHONY : src/CMakeFiles/00_gemm_naive_exec.dir/rule
+src/CMakeFiles/bridge_fp64_exe.dir/rule:
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/bridge_fp64_exe.dir/rule
+.PHONY : src/CMakeFiles/bridge_fp64_exe.dir/rule
 
 # Convenience name for target.
-00_gemm_naive_exec: src/CMakeFiles/00_gemm_naive_exec.dir/rule
-.PHONY : 00_gemm_naive_exec
+bridge_fp64_exe: src/CMakeFiles/bridge_fp64_exe.dir/rule
+.PHONY : bridge_fp64_exe
 
 # fast build rule for target.
-00_gemm_naive_exec/fast:
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive_exec.dir/build.make src/CMakeFiles/00_gemm_naive_exec.dir/build
-.PHONY : 00_gemm_naive_exec/fast
+bridge_fp64_exe/fast:
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/bridge_fp64_exe.dir/build.make src/CMakeFiles/bridge_fp64_exe.dir/build
+.PHONY : bridge_fp64_exe/fast
 
 00_gemm_naive.o: 00_gemm_naive.cu.o
 .PHONY : 00_gemm_naive.o
 
 # target to build an object file
 00_gemm_naive.cu.o:
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive.dir/build.make src/CMakeFiles/00_gemm_naive.dir/00_gemm_naive.cu.o
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive_exec.dir/build.make src/CMakeFiles/00_gemm_naive_exec.dir/00_gemm_naive.cu.o
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/cuda_gemm.dir/build.make src/CMakeFiles/cuda_gemm.dir/00_gemm_naive.cu.o
 .PHONY : 00_gemm_naive.cu.o
 
 00_gemm_naive.i: 00_gemm_naive.cu.i
@@ -172,8 +171,7 @@ src/CMakeFiles/00_gemm_naive_exec.dir/rule:
 
 # target to preprocess a source file
 00_gemm_naive.cu.i:
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive.dir/build.make src/CMakeFiles/00_gemm_naive.dir/00_gemm_naive.cu.i
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive_exec.dir/build.make src/CMakeFiles/00_gemm_naive_exec.dir/00_gemm_naive.cu.i
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/cuda_gemm.dir/build.make src/CMakeFiles/cuda_gemm.dir/00_gemm_naive.cu.i
 .PHONY : 00_gemm_naive.cu.i
 
 00_gemm_naive.s: 00_gemm_naive.cu.s
@@ -181,9 +179,32 @@ src/CMakeFiles/00_gemm_naive_exec.dir/rule:
 
 # target to generate assembly for a file
 00_gemm_naive.cu.s:
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive.dir/build.make src/CMakeFiles/00_gemm_naive.dir/00_gemm_naive.cu.s
-	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive_exec.dir/build.make src/CMakeFiles/00_gemm_naive_exec.dir/00_gemm_naive.cu.s
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/cuda_gemm.dir/build.make src/CMakeFiles/cuda_gemm.dir/00_gemm_naive.cu.s
 .PHONY : 00_gemm_naive.cu.s
+
+bridge_gemm_fp32.o: bridge_gemm_fp32.cu.o
+.PHONY : bridge_gemm_fp32.o
+
+# target to build an object file
+bridge_gemm_fp32.cu.o:
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/bridge_fp64_exe.dir/build.make src/CMakeFiles/bridge_fp64_exe.dir/bridge_gemm_fp32.cu.o
+.PHONY : bridge_gemm_fp32.cu.o
+
+bridge_gemm_fp32.i: bridge_gemm_fp32.cu.i
+.PHONY : bridge_gemm_fp32.i
+
+# target to preprocess a source file
+bridge_gemm_fp32.cu.i:
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/bridge_fp64_exe.dir/build.make src/CMakeFiles/bridge_fp64_exe.dir/bridge_gemm_fp32.cu.i
+.PHONY : bridge_gemm_fp32.cu.i
+
+bridge_gemm_fp32.s: bridge_gemm_fp32.cu.s
+.PHONY : bridge_gemm_fp32.s
+
+# target to generate assembly for a file
+bridge_gemm_fp32.cu.s:
+	cd /home/ywc/HPC/gemm/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/bridge_fp64_exe.dir/build.make src/CMakeFiles/bridge_fp64_exe.dir/bridge_gemm_fp32.cu.s
+.PHONY : bridge_gemm_fp32.cu.s
 
 checktheversion.o: checktheversion.cpp.o
 .PHONY : checktheversion.o
@@ -217,12 +238,15 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... 00_gemm_naive"
-	@echo "... 00_gemm_naive_exec"
+	@echo "... bridge_fp64_exe"
+	@echo "... cuda_gemm"
 	@echo "... version_exec"
 	@echo "... 00_gemm_naive.o"
 	@echo "... 00_gemm_naive.i"
 	@echo "... 00_gemm_naive.s"
+	@echo "... bridge_gemm_fp32.o"
+	@echo "... bridge_gemm_fp32.i"
+	@echo "... bridge_gemm_fp32.s"
 	@echo "... checktheversion.o"
 	@echo "... checktheversion.i"
 	@echo "... checktheversion.s"

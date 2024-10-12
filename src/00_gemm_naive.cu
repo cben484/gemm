@@ -1,62 +1,19 @@
+#include "../include/utils.cuh"
 #include "../include/utils_benchmark.cuh"
 #include "../include/utils_check_device.cuh"
-#include <__clang_cuda_builtin_vars.h>
-#include <__clang_cuda_runtime_wrapper.h>
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
 #include <string>
 
-int main(int argc, char *argv[]) {
-
-  float SelapsedTime;
-  int m = std::stoi(argv[1]);
-  int n = std::stoi(argv[3]);
-  int k = std::stoi(argv[2]);
-
-  std::cout << "***************************************************************"
-               "***************************************************************"
-               "*************************************"
-            << std::endl;
-  std::cout << "探测设备......" << std::endl;
-  CHECK_Device(&argv[0]);
-
-  std::cout << "参数总数：" << std::endl;
-  std::cout << argc << std::endl;
-  std::cout << "参数检查：" << std::endl;
-  std::cout << argv[0] << std::endl;
-  std::cout << argv[1] << std::endl;
-  std::cout << argv[2] << std::endl;
-  std::cout << argv[3] << std::endl;
-  std::cout << "参数检查完毕" << std::endl;
-
-  std::cout << "实际上两矩阵相乘的参数为：" << argv[1] << "x" << argv[2]
-            << " 矩阵与 " << argv[2] << "x" << argv[3] << " 矩阵相乘"
-            << std::endl;
-
-  benchmark(argc, argv, &SelapsedTime);
-  std::cout << "cublas的时间开销：" << SelapsedTime << "ms  "
-            << SelapsedTime / 1000 << "s" << std::endl;
-
-  std::cout << "cublas的TFLOPS："
-            << (2.0 * m * n * k) / ((SelapsedTime * 1e-3) * 1e12) << " TFLOPS"
-            << std::endl;
-
-  std::cout << "***************************************************************"
-               "***************************************************************"
-               "*************************************"
-            << std::endl;
-
-  return EXIT_SUCCESS;
-}
-
 template <typename T>
-__global__ void gemm_naive(int m, int n, int k, T const *A, size_t lda,
-                           T const *B, size_t ldb, T const *C, size_t ldc,
-                           T alpha, T beta, float *time) {
+__global__ void gemm_00_naive(size_t m, size_t n, size_t k, T const *A,
+                              size_t lda, T const *B, size_t ldb, T *C,
+                              size_t ldc, const double alpha,
+                              const double beta) {
 
   size_t row{blockDim.x * blockIdx.x + threadIdx.x};
-  size_t col{blockDim.x * blockIdx.x + threadIdx.x};
+  size_t col{blockDim.y * blockIdx.y + threadIdx.y};
 
   if (row < m && col < n) {
     double sum{0};
@@ -66,3 +23,27 @@ __global__ void gemm_naive(int m, int n, int k, T const *A, size_t lda,
     C[row * ldc + col] = alpha * sum + beta * C[row * ldc + col];
   }
 }
+
+template <typename T>
+void launch_gemm_kernel_v00(size_t m, size_t n, size_t k, T const *A,
+                            size_t lda, T const *B, size_t ldb, T *C,
+                            size_t ldc, const double alpha, const double beta,
+                            cudaStream_t stream) {
+  dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
+  dim3 dimGrid(((m) + dimBlock.x - 1) / dimBlock.x,
+               ((n) + dimBlock.y - 1) / dimBlock.y);
+  gemm_00_naive<T><<<dimGrid, dimBlock, 0, stream>>>(m, n, k, A, lda, B, ldb, C,
+                                                     ldc, alpha, beta);
+}
+
+template void
+launch_gemm_kernel_v00<float>(size_t m, size_t n, size_t k, float const *A,
+                              size_t lda, float const *B, size_t ldb, float *C,
+                              size_t ldc, const double alpha, const double beta,
+                              cudaStream_t stream);
+
+template void
+launch_gemm_kernel_v00<double>(size_t m, size_t n, size_t k, double const *A,
+                               size_t lda, double const *B, size_t ldb,
+                               double *C, size_t ldc, const double alpha,
+                               const double beta, cudaStream_t stream);

@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/version_exec.dir/checktheversion.cpp.o -o version_exec 
+/usr/bin/c++ -g CMakeFiles/version_exec.dir/checktheversion.cpp.o -o version_exec 

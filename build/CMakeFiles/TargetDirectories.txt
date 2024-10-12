@@ -1,7 +1,7 @@
 /home/ywc/HPC/gemm/build/CMakeFiles/edit_cache.dir
 /home/ywc/HPC/gemm/build/CMakeFiles/rebuild_cache.dir
-/home/ywc/HPC/gemm/build/src/CMakeFiles/00_gemm_naive.dir
+/home/ywc/HPC/gemm/build/src/CMakeFiles/cuda_gemm.dir
 /home/ywc/HPC/gemm/build/src/CMakeFiles/version_exec.dir
-/home/ywc/HPC/gemm/build/src/CMakeFiles/00_gemm_naive_exec.dir
+/home/ywc/HPC/gemm/build/src/CMakeFiles/bridge_fp64_exe.dir
 /home/ywc/HPC/gemm/build/src/CMakeFiles/edit_cache.dir
 /home/ywc/HPC/gemm/build/src/CMakeFiles/rebuild_cache.dir

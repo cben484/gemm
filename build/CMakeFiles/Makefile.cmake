@@ -133,7 +133,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "src/CMakeFiles/00_gemm_naive.dir/DependInfo.cmake"
+  "src/CMakeFiles/cuda_gemm.dir/DependInfo.cmake"
   "src/CMakeFiles/version_exec.dir/DependInfo.cmake"
-  "src/CMakeFiles/00_gemm_naive_exec.dir/DependInfo.cmake"
+  "src/CMakeFiles/bridge_fp64_exe.dir/DependInfo.cmake"
   )

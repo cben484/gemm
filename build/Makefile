@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named 00_gemm_naive
+# Target rules for targets named cuda_gemm
 
 # Build rule for target.
-00_gemm_naive: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 00_gemm_naive
-.PHONY : 00_gemm_naive
+cuda_gemm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cuda_gemm
+.PHONY : cuda_gemm
 
 # fast build rule for target.
-00_gemm_naive/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive.dir/build.make src/CMakeFiles/00_gemm_naive.dir/build
-.PHONY : 00_gemm_naive/fast
+cuda_gemm/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/cuda_gemm.dir/build.make src/CMakeFiles/cuda_gemm.dir/build
+.PHONY : cuda_gemm/fast
 
 #=============================================================================
 # Target rules for targets named version_exec
@@ -143,17 +143,17 @@ version_exec/fast:
 .PHONY : version_exec/fast
 
 #=============================================================================
-# Target rules for targets named 00_gemm_naive_exec
+# Target rules for targets named bridge_fp64_exe
 
 # Build rule for target.
-00_gemm_naive_exec: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 00_gemm_naive_exec
-.PHONY : 00_gemm_naive_exec
+bridge_fp64_exe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bridge_fp64_exe
+.PHONY : bridge_fp64_exe
 
 # fast build rule for target.
-00_gemm_naive_exec/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/00_gemm_naive_exec.dir/build.make src/CMakeFiles/00_gemm_naive_exec.dir/build
-.PHONY : 00_gemm_naive_exec/fast
+bridge_fp64_exe/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/bridge_fp64_exe.dir/build.make src/CMakeFiles/bridge_fp64_exe.dir/build
+.PHONY : bridge_fp64_exe/fast
 
 # Help Target
 help:
@@ -163,8 +163,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... 00_gemm_naive"
-	@echo "... 00_gemm_naive_exec"
+	@echo "... bridge_fp64_exe"
+	@echo "... cuda_gemm"
 	@echo "... version_exec"
 .PHONY : help
 

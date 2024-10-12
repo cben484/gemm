@@ -1,13 +1,13 @@
 #ifndef UTILS_BENCHMARK_CUH
 #define UTILS_BENCHMARK_CUH
 
-#include "utils_check_device.cuh"
+#include "utils.cuh"
 #include "utils_check_fuctions.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <string>
 
-int curandDgenerate(double *matrx, int m, int n, unsigned long long seed);
+// int curandDgenerate(double *matrx, int m, int n, unsigned long long seed);
 
 int benchmark(int argc, char *argv[], float *SelapsedTime) {
 
@@ -16,10 +16,11 @@ int benchmark(int argc, char *argv[], float *SelapsedTime) {
   std::cout << argv[2] << std::endl;
   std::cout << argv[3] << std::endl;
   std::cout << "参数接收完毕" << std::endl;
-  std::cout << "***************************************************************"
-               "***************************************************************"
-               "*************************************"
-            << std::endl;
+  // std::cout <<
+  // "***************************************************************"
+  //              "***************************************************************"
+  //              "*************************************"
+  // << std::endl;
   std::cout << "实际上使用cublasDgemm两矩阵相乘的参数为：" << argv[1] << "x"
             << argv[2] << " 矩阵与 " << argv[2] << "x" << argv[3]
             << " 矩阵的乘法" << std::endl;
@@ -32,9 +33,10 @@ int benchmark(int argc, char *argv[], float *SelapsedTime) {
   int m = std::stoi(argv[1]);
   int n = std::stoi(argv[3]);
   int k = std::stoi(argv[2]);
-  int lda = std::stoi(argv[1]);
-  int ldb = std::stoi(argv[2]);
-  int ldc = std::stoi(argv[1]);
+  int lda = ((std::stoi(argv[2]) + 15) / 16) * 16;
+  int ldb = ((std::stoi(argv[3]) + 15) / 16) * 16;
+  int ldc = ((std::stoi(argv[3]) + 15) / 16) * 16;
+
   CHECK_Runtime(cudaMalloc((void **)&A, sizeof(double) * m * k));
   CHECK_Runtime(cudaMalloc((void **)&B, sizeof(double) * k * n));
   CHECK_Runtime(cudaMalloc((void **)&C, sizeof(double) * m * n));
@@ -51,12 +53,12 @@ int benchmark(int argc, char *argv[], float *SelapsedTime) {
     return EXIT_SUCCESS;
   }
 
-  curandDgenerate(A, m, k, 1234ULL);
-  curandDgenerate(B, k, n, 4321ULL);
+  curandgenerate(A, m, k, 1234ULL);
+  curandgenerate(B, k, n, 4321ULL);
 
   CHECK_Runtime(cudaEventRecord(start));
-  CHECK_Cublas(cublasDgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, m, n, k, &alpha, A,
-                           lda, B, ldb, &beta, C, ldc));
+  CHECK_Cublas(cublasDgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, n, m, k, &alpha, B,
+                           ldb, A, lda, &beta, C, ldc));
   CHECK_Runtime(cudaEventRecord(stop));
   CHECK_Runtime(cudaEventSynchronize(stop));
 
@@ -65,17 +67,6 @@ int benchmark(int argc, char *argv[], float *SelapsedTime) {
   cudaFree(A);
   cudaFree(B);
   cudaFree(C);
-
-  return EXIT_SUCCESS;
-}
-
-int curandDgenerate(double *matrx, int m, int n, unsigned long long seed) {
-  curandGenerator_t gen;
-  size_t Sum = m * n;
-
-  curandCreateGenerator(&gen, CURAND_RNG_PSEUDO_DEFAULT);
-  curandSetPseudoRandomGeneratorSeed(gen, seed);
-  curandGenerateUniformDouble(gen, matrx, Sum);
 
   return EXIT_SUCCESS;
 }

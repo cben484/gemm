@@ -1,1 +1,0 @@
-/usr/bin/g++ -fPIC -shared -Wl,-soname,lib00_gemm_naive.so -o lib00_gemm_naive.so @CMakeFiles/00_gemm_naive.dir/objects1 @CMakeFiles/00_gemm_naive.dir/linkLibs.rsp -L"/usr/local/cuda-12.6/targets/x86_64-linux/lib/stubs" -L"/usr/local/cuda-12.6/targets/x86_64-linux/lib"
